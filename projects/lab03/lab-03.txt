@@ -1,0 +1,27 @@
+John O'Donnell
+Marta Vargas
+Xianhao Zhou
+Afulabi Abayomi
+
+Question 1:
+-----------
+Four binary digits can produce values 0 through 15
+Four octal digits can produce values 0 through 4095
+Four decimal digits can produce values 0 through 9999
+Four hexidecimal digits can produce values 0 through 65535
+
+Question 2:
+-----------
+0x74F8E9DA = 0d1962469850
+
+Question 3:
+-----------
+0b11011010101 = 0x6D5
+
+Question 4:
+-----------
+0o726354 = 0x3ACEC
+
+Question 5:
+-----------
+0d128472481 = 0o752052641

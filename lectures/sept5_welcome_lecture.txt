@@ -1,0 +1,43 @@
+Marco and Michael
+Letures T Th 12:30p-1:45, Lab F 2-3:45
+Discussion Sections: M T 5p-6
+Office hours TBD
+
+introduction to programming, focuses on problem solving
+introduction to OPP, classes, objects and inheritence
+review of elementary CS techniuqes and algorithms
+    recursion, sorting, linked lists
+
+review of tentative schedule
+
+problem solving with cpp 10th edition
+
+CS50, vim, g++
+
+Assignments
+    8 programming assignments = 25%
+    lab attendance            =  5%
+    2 midterms                = 40%
+    1 final                   = 30%
+graded using gradescope
+late submissions not accepted
+no less than 7 days to complete
+
+typical hardware
+    cpu, memory, bus, i/o
+
+abstraction layers
+    the process of removing physical spatial or temporal details or attributes in the study
+    of objects or systems in order to focus attention on details of higher importance
+        software domain                  HIGH level of abstraction
+            applications
+            programming languages
+            libraries
+            operating systems
+        digital domain
+            architecture
+            components
+            integrated circuits
+            logic gates
+        analog domain
+            transistors                   LOW level of abstraction

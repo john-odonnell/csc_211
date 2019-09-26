@@ -1,0 +1,27 @@
+How Programs Run
+    main components of a computer
+
+                        processor                       single core processors can execute one instruction at a time
+                            ^
+                            |
+        input deviecs ->    |     ->  output devices    a process is a program in execution, stored in main memory
+                            |
+                            v
+                        main memory
+
+                            ^
+                            v
+
+                        secondary memory
+
+    source code is in seconday memory (physical drive)
+    the compiler is in the seconday memory
+    binary executable file is in the secondary memory
+
+    the binary executable file is loaded into main memory
+    the processor brings the instructions from the main memory to the processor
+
+    the executable holds both instructions and data
+
+    when the program terminates, the main memory is released
+

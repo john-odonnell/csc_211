@@ -1,0 +1,95 @@
+Problems, Algorithms and Programs
+Problem:    task to be performed (precisely defined)
+            well defined inputs and outputs
+            may include constraints
+Algorithm:  set of concrete steps required to solve a problem
+            properties: it must be correct
+                        it is composed of a series of contrete and finite number steps
+                        there can be no ambiguity as to which step will be performed next
+                        it must terminate
+            an example: algorithm that determines how many times a name occurs in a list of names
+                        1. get the list of names
+                        2. get the name being checked
+                        3. set counter to 0
+                        4. for each name in the list, compare it to the given name.
+                           if the name matches, counter++
+                        5. return counter
+Program:
+            Program Design Process: 1. Problem Definition
+                                    2. Algorithm design
+                                    3. Desktop testing
+                                    4. Translate to C++
+                                    5. Testing
+                                    6. Working program
+
+example:    read a point from user ad determine the quadrant it is in.
+            you can assume that neither of the two coordinates can be 0.
+
+            1. take the x coordinate from the user
+            2. if the x coordinate is 0, ask for another coordinate
+            3. take the y coordinate from the user
+            4. if the y coordinate is 0, ask for another coordinate
+            5. instantiate variable quadtrant
+            6. determine the quadrant by the following rules:
+                a. if +x and +y, quadrant = 1
+                b. if -x and +y, quadrant = 2
+                c. if -x and -y, quadrant = 3
+                d. if +x and -y, quadrant = 4
+            7. return quadrant
+
+C++ History:
+    Ken Thompson created the B language while developing Unix (implemented in assembly) as Bell Labs [1970]
+        slow and interpreted
+        interpreted vs compiled
+    Dennis Ritchie began development of a compiler for B that could produce executable code [1972]
+        became known as the C language
+        Linux kernel reimplemented in C
+    Bjarne Stroustrup began the development of C++ at Bell Labs [1980]
+        object oriented and classes
+        generic
+        functional
+C++:
+    static type system
+        prevents unintended operations
+        optimized machine code (faster and/or useing less memory)
+            cuda library
+            ogre3D library
+    object oriented
+        improves maintainability
+    when to use
+        performance matters
+        developing time is less important
+        specialized libraries require it
+    pros
+        vast documentation freely available
+        provides different levels of abstraction from data structures to memory management
+        it is compiled
+        high performance
+    cons
+        steep learning curve
+        large language
+        no automatic memory management (can be an advantage)
+        requires attention to minor details
+        GUIs only available through extensive libraries (less portable)
+            visual studio
+
+Compiler:
+    a computer program that
+        translates source code form one programming language to another
+            usually from high level to low level
+    performs code optimizations
+    provides error checking
+
+    C,C++,Ada,Java -> Front End -> Middle End -> Back End -> ARM,Sparc,x86_32,PowerPC
+
+    Correctness is paramount. Compilers cannot afford to be wrong.
+
+    C++ Compilers: G++, ICC, Clang
+
+
+Preparing a C++ Program for Running:
+1. C++ program
+2. Compiler
+3. Object code for C++ program
+4. Linker       <------------------     object code for other routiness
+5. Complete machine language code ready to run
