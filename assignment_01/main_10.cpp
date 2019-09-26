@@ -5,9 +5,6 @@ int main () {
     int digit;
     std::string output;
 
-    std::cout << "~~Word for Number~~" << std::endl;
-    std::cout << "Input digit range [0, 9]: " << std::ends;
-
     std::cin >> digit;
 
     switch (digit) {

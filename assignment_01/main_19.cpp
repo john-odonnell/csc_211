@@ -5,9 +5,6 @@ int main () {
     int a, b, c;
     std::string output;
 
-    std::cout << "~~Triangles~~" << std::endl;
-    std::cout << "Input 3 Interior Angles: " << std::endl;
-
     std::cin >> a >> b >> c;
 
     if ((a + b + c) != 180) {

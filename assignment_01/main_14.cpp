@@ -5,9 +5,6 @@ int main () {
     double x, y;
     std::string quadrant;
 
-    std::cout << "~~Which Quadrant~~" << std::endl;
-    std::cout << "Enter x and y values:" << std::endl;
-
     std::cin >> x >> y;
 
     if ((x > 0) && (y > 0)) {

@@ -4,9 +4,6 @@
 int main () {
     int a, b, c, smallest;
 
-    std::cout << "~~Smallest Number~~" << std::endl;
-    std::cout << "Enter three numbers to find the smallest:" << std::endl;
-
     std::cin >> a >> b >> c;
 
     if (a < b) {
