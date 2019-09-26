@@ -5,9 +5,6 @@ int main () {
     int number;
     std::string pos_neg;
 
-    std::cout << "~~Positive or Negative~~" << std::endl;
-    std::cout << "Enter number to determine sign: " << std::ends;
-
     // push the input stream to number
     std::cin >> number;
 

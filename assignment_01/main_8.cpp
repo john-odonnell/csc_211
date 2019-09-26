@@ -5,12 +5,9 @@ int main () {
     int number;
     std::string good_nogood;
 
-    std::cout << "~~Last Digit is 9~~" << std::endl;
-    std::cout << "Enter number: " << std::ends;
-
     std::cin >> number;
 
-    if (((number + 1) % 10) == 0) {
+    if ((number % 10) == 9 || (number % 10) == -9) {
         good_nogood = " is good";
     }
     else {

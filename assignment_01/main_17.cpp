@@ -5,9 +5,6 @@ int main () {
     char grade;
     std::string output;
 
-    std::cout << "~~Grades~~" << std::endl;
-    std::cout << "Input Letter Grade: " << std::ends;
-
     std::cin >> grade;
     grade = toupper(grade);
 

@@ -5,10 +5,6 @@ int main () {
     int a, b, ans;  // instantiate a b ans
     char c;         // and operation character c
 
-    // push strings to the output streams
-    std::cout << "~~Calculator~~" << std::endl;
-    std::cout << "Enter two numbers, and the operation you'd like to perform: " << std::endl;
-
     // push input stream to a b and c
     std::cin >> a >> b >> c;
 

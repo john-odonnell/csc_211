@@ -5,9 +5,6 @@ int main () {
     int month, day, year;
     std::string month_s;
 
-    std::cout << "~~Date Converter~~" << std::endl;
-    std::cout << "Enter month, day, then year in integer form:" << std::endl;
-
     std::cin >> month >> day >> year;
 
     switch (month) {

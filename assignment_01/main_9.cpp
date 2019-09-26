@@ -5,9 +5,6 @@ int main () {
     int age;
     std::string privilege;
 
-    std::cout << "~~Driving Privileges~~" << std::endl;
-    std::cout << "Enter age: " << std::ends;
-
     std::cin >> age;
 
     if (age < 16) {

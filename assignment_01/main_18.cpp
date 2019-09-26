@@ -6,9 +6,6 @@ int main () {
     int a, b, c, d, e, f;
     std::string output;
 
-    std::cout << "~~Day of the Week~~" << std::endl;
-    std::cout << "Input Date in Day, Month, Year order: " << std::endl;
-
     std::cin >> day >> month >> year;
 
     if (month < 3) {

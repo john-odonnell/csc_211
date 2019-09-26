@@ -6,9 +6,6 @@ int main () {
     double fraction_c_f = (double)9/5;
     std::string output;
 
-    std::cout << "~~Celsius to Farenheit~~" << std::endl;
-    std::cout << "Enter temp in C: " << std::ends;
-
     std::cin >> celsius;
 
     farenheit = ((celsius * fraction_c_f) + 32);
