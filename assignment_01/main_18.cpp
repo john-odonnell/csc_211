@@ -20,7 +20,7 @@ int main () {
     yearpart = year % 100;
 
     a = day;
-    b = (((month + 1) * 26) / 10);
+    b = ((month + 1) * 26) / 10;
     c = yearpart;
     d = yearpart / 4;
     e = century / 4;

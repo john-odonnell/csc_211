@@ -21,7 +21,7 @@ int main () {
         output_char = 'C';
     }
 
-    std::cout << input_temp << " degree(s) " << input_char;
+    std::cout << input_temp << " degree(s) " << char(toupper(input_char));
     std::cout << " is equal to ";
     std::cout << output_temp << " degree(s) " << output_char;
     std::cout << std::endl;
