@@ -40,9 +40,10 @@ int main () {
     precision_input = digitsBeforeDecimal(input_temp);
     precision_output = digitsBeforeDecimal(output_temp);
 
-    std::cout << std::setprecision(precision_input) << input_temp << " degree(s) " << char(toupper(input_char));
+    std::cout << std::fixed << std::setprecision(4);
+    std::cout << input_temp << " degree(s) " << char(toupper(input_char));
     std::cout << " is equal to ";
-    std::cout << std::setprecision(precision_output) << output_temp << " degree(s) " << output_char;
+    std::cout << output_temp << " degree(s) " << output_char;
     std::cout << std::endl;
 
     return 0;

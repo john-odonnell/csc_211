@@ -31,10 +31,9 @@ int main () {
     int precision_c = digitsBeforeDecimal(c);
     int precision_avg = digitsBeforeDecimal(average);
 
-    std::cout << "The average of " << std::setprecision(precision_a) << a << ", ";
-    std::cout << std::setprecision(precision_b) << b << ", and ";
-    std::cout << std::setprecision(precision_c) << c << " is ";
-    std::cout << std::setprecision(precision_avg) << average << std::endl;
+    std::cout << std::fixed << std::setprecision(4);
+    std::cout << "The average of " << a << ", " << b << ", and ";
+    std::cout << c << " is " << average << std::endl;
 
     return 0;
 }
