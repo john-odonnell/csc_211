@@ -1,0 +1,46 @@
+Question 1:
+-----------
+int i = 0;
+for (i; i < 10; ++i) {
+    std::cout << i << std::endl;
+}
+std::cout << i << std::endl;
+
+Question 2:
+-----------
+To make the for loop infinite, removing the ++i increment
+would mean i would never reach 10, therefore the loop would never meet
+the termination condition.
+
+Question 3:
+-----------
+the counter i is incremented in the for statement parameters,
+but only after it is deincremented in the for loop body, meaning the
+loop runs forever at i = 0.
+
+Question 4:
+-----------
+The continue statement following the if conditional does not break the
+loop once i == 10, as the continue statement is used to skip the rest
+of a loop, but the loop itself continues. To fix, swap continue with
+break.
+
+Question 5:
+-----------
+This program doesn't print anything. This is because the program only
+prints i as an ouput if it is equal to 9 after the for loop finishes.
+The way that it is constructed, the for loop does nothing but
+incrememnt i, but it increments it all the way to 10, at which point
+the conditional test is failed and the loop ends. In order to get an
+output, the conditional statement of the for loop should be i < 9.
+
+Question 6:
+-----------
+The program in question doesn't run the while loop, as the condition
+!i is nonsencical. In order for the output to print, the condition of
+the while loop has to be while (true).
+
+Question 7:
+-----------
+There is no output for this program, it does not include a print
+statement.
