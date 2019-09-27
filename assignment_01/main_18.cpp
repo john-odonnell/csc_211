@@ -23,8 +23,6 @@ int main () {
     e = century / 4;
     f = 5 * century;
 
-    std::cout << a << b << c << d << e << f << std::endl;
-
     weekday = (a + b + c + d + e + f) % 7;
 
     switch(weekday) {
