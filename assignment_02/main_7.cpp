@@ -1,22 +1,23 @@
 #include <iostream>
 #include <iomanip>
 
-int sum_even(int n) {
+int sum_even(std::string n) {
     int sum = 0;
     int digit;
-    while (n > 0) {
-        digit = n % 10;
+    std::string this_char;
+    for (int i = 0; i < n.length(); i++) {
+        this_char = n[i];
+        digit = std::stoi(this_char);
         if (digit % 2 == 0) {
             sum += digit;
         }
-        n /= 10;
     }
 
     return sum;
 }
 
 int main () {
-    int n;
+    std::string n;
     std::cin >> n;
 
     int sum = sum_even(n);

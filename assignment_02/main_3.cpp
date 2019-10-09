@@ -17,7 +17,7 @@ int main () {
 
     int x = factorial(number);
 
-    if (x == 0) {
+    if (number > 12) {
         std::cout << "Can't handle this" << std::endl;
     }
     else {

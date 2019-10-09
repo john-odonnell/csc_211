@@ -4,24 +4,30 @@
 std::string hex_values = "0123456789ABCDEF";
 
 void rgb_to_hex(int val) {
-    std::string hex_val = "";
     std::string hex_digit;
     int digit;
 
-    while (val >= 0) {
+    std::string first_char, second_char;
+
+    for (int i = 0; i < 2; i++) {
         if (val == 0) {
             digit = 0;
-            val--;
         }
         else {
             digit = val % 16;
             val /= 16;
         }
         hex_digit = hex_values[digit];
-        hex_val += hex_digit;
+
+        if (i == 0) {
+            second_char = hex_digit;
+        }
+        else if (i == 1) {
+            first_char = hex_digit;
+        }
     }
 
-    std::cout << hex_val << " ";
+    std::cout << first_char << second_char;
 
 
 }
@@ -30,6 +36,7 @@ int main () {
     int r, g, b;
     std::cin >> r >> g >> b;
 
+    std::cout << "#";
     rgb_to_hex(r);
     rgb_to_hex(g);
     rgb_to_hex(b);

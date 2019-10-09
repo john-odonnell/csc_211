@@ -12,14 +12,19 @@ void print_leading_spaces(int level, int levels) {
 
 void print_chars_up(int level, int levels) {
     for (int i = 0; i <= level; i++) {
-        std::cout << char_string[i] << " ";
+        if (char_string[i] == 'A') {
+            std::cout << char_string[i];
+        }
+        else {
+            std::cout << " " << char_string[i];
+        }
     }
 }
 
 void print_chars_down(int level, int levels) {
     int i = level - 1;
     for (i; i >= 0; i--) {
-        std::cout << char_string[i] << " ";
+        std::cout << " " << char_string[i];
     }
 }
 
@@ -45,7 +50,7 @@ int main () {
     char input;
     std::cin >> input;
 
-    char_pyramid(input);
+    char_pyramid(toupper(input));
 
     return 0;
 }

@@ -2,7 +2,7 @@
 #include <iomanip>
 
 void draw_triangle_top(int base, int max, int increment) {
-    while (base < max) {
+    while (base <= max) {
         for (int i = 0; i < base; i ++) {
             std::cout << "+";
         }
