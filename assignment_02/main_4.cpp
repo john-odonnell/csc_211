@@ -7,6 +7,7 @@ int power(int a, int b) {
         power *= a;
         b--;
     }
+
     return power;
 }
 
@@ -15,7 +16,13 @@ int main () {
     std::cin >> a >> b;
 
     int output = power(a, b);
-    std::cout << output << std::endl;
+
+    if (output == -1) {
+        std::cout << "Can't handle this" << std::endl;
+    }
+    else {
+        std::cout << output << std::endl;
+    }
 
     return 0;
 }

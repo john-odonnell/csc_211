@@ -13,12 +13,16 @@ void draw_triangle_top(int base, int max, int increment) {
 }
 
 void draw_triangle_bottom(int base, int max, int increment) {
-    while (max >= base) {
-        for (int i = 0; i < max; i++) {
+    int start_here = base;
+    for (int i = base; base < max; i++) {
+        base += increment;
+        start_here++;
+    }
+    while (start_here >= base) {
+        for (int i = 0; i < start_here; i++) {
             std::cout << "+";
         }
         std::cout << std::endl;
-
         max -= increment;
     }
 }
