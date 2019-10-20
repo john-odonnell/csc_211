@@ -1,0 +1,16 @@
+John O'Donnell
+
+Question 1:
+-----------
+22 swaps
+
+Question 2:
+-----------
+8 swaps
+
+Question 3:
+-----------
+bc the null terminator is 0
+
+Question 4:
+-----------
