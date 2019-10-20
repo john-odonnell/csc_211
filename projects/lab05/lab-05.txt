@@ -1,0 +1,54 @@
+John O'Donnell
+Lab 05: Debuggers and Functions
+
+Question 1:
+-----------
+The current value of x is reported as 32767. This value is
+a representation of the data stored at the location x before
+the program runs.
+
+Question 2:
+-----------
+The debugger traced the program similarly to how a human
+user would trace the program, aside from the value spike
+that x experiences upon instantiaion.
+
+Question 3:
+-----------
+A 3 was printed out to the console. This comes from the
+result vairable being instantiated to 0, then altered by
+the plus_one function being passed 0, which returns 1,
+and then altered again by the plus_two function being
+passed result, which in turn calls plus_one with result
++ 1 being passed as an argument, which returns 3.
+
+Question 4:
+-----------
+I was not surprised by the activity of the stack on pythonTutor.
+
+Question 5:
+-----------
+The return type of the main function is an integer.
+
+Question 6:
+-----------
+You don't have to pass any parameters to the main function,
+however the default parameters are int argc and char *argv[]
+and are passed to the main function by the compiler.
+
+Question 7:
+-----------
+Returning void means that the function doesn't return anything.
+
+Question 8:
+-----------
+Void functions are incapable of returning values.
+
+Question 9:
+-----------
+The void function run() was not declared before it was used in
+the main() function.
+
+Question 10:
+------------
+5 11 14

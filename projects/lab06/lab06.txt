@@ -1,0 +1,17 @@
+Question 1:
+-----------
+char myString[10]; allows for the storage of a nine character string
+due to the inclusion of the null terminator \0.
+
+Question 2:
+-----------
+The largest string we can store into an arbitrary variable of size
+n is n - 1.
+
+Question 3:
+-----------
+I imagine that the exclusion of the null terminator would lead to the
+string having no defined end point.
+
+Question 4:
+-----------
