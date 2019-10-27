@@ -1,0 +1,14 @@
+Question 3:
+-----------
+The output would be 35
+
+Question 4:
+-----------
+1: a=21, b=12
+2: a=21, b=22
+3: a=1, b=3
+
+Question 7:
+-----------
+the delete[] foo command deletes the entire array foo, whereas
+the command delete foo would delete the first element of the array

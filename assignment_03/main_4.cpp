@@ -15,8 +15,7 @@ bool sorted(int arr[], int length) {
 
     while (sorted && !complete) {
         for (int i = 1; i < length; i++) {
-            int j = i - 1;
-            if (arr[j] > arr[i]) {
+            if (arr[i - 1] < arr[i]) {
                 sorted = false;
             }
         }
@@ -45,3 +44,5 @@ int main() {
 
     return 0;
 }
+
+// WORKS

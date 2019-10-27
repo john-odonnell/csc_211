@@ -9,22 +9,22 @@ unsigned int string_len(char str[]) {
     return counter;
 }
 
-void reverse(char inputString[], char outputString[]) {
+void reverse(char inputString[]) {
     int length = string_len(inputString);
 
     for (int i = length - 1; i >= 0; i--) {
-        int newIndex = length - 1 - i;
-        outputString[newIndex] = inputString[i];
+        std::cout << inputString[i];
     }
+    std::cout << std::endl;
 }
 
 int main() {
-    char inputString[100], reversed[100];
+    char inputString[100];
     std::cin.getline(inputString, 100);
 
-    reverse(inputString, reversed);
-
-    std::cout << reversed << std::endl;
+    reverse(inputString);
 
     return 0;
 }
+
+// WORKS

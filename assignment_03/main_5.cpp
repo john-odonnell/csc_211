@@ -12,8 +12,11 @@ unsigned int str_length(char str[]) {
 void filter_dups(char inputString[], char outputString[], unsigned int stringLength) {
     outputString[0] = inputString[0];
     int nextIndex = 1;
-    for (int i = 1; i < stringLength; i++) {
-        if (inputString[i] != inputString[i - 1]) {
+    for (int i = 1; i <= stringLength; i++) {
+        if (i == stringLength) {
+            outputString[nextIndex] = 0x00;
+        }
+        else if (inputString[i] != inputString[i - 1]) {
             outputString[nextIndex] = inputString[i];
             nextIndex++;
         }
@@ -32,3 +35,5 @@ int main() {
 
     std::cout << outputString << std::endl;
 }
+
+// WORKS
