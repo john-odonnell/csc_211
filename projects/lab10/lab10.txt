@@ -1,0 +1,31 @@
+Question 1
+----------
+The stack grows whenever a new iteration of the recursive function
+is called.
+
+Question 2:
+-----------
+The stack shrinks whenever an iteration of the recursive function
+returns to the function above it.
+
+Question 3:
+-----------
+The function described by foo() determines the nth number of a sequence
+similar to the fibonacci sequence, but F(n) = F(n-1) + F(n-2) + F(n-3)
+
+foo(6) returns 20
+
+Question 3b:
+------------
+
+
+Question 4:
+-----------
+
+
+Question 5:
+-----------
+
+
+Question 6:
+-----------
