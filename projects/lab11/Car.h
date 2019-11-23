@@ -2,6 +2,8 @@
 #define __car_h__
 #include <string>
 #include <math.h>
+#include <iostream>
+#include <iomanip>
 
 class Car {
     private:
@@ -59,3 +61,5 @@ class Car {
             std::cout << "Mileage: " << mileage << std::endl;
         }
 };
+
+#endif
