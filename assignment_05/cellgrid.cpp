@@ -55,17 +55,19 @@ int Cellgrid::countCells(int row, int col, int conn) {
     
     // this will prevent a compiler error but should be changed
     // to return the cell count you have found
-    bool *checked = new bool[row * col] {false};
-    return _countCells(row - 1, col - 1, conn, checked);
+    bool *checked = new bool[this->rows * this->cols] {false};
+    int cellCount = _countCells(row - 1, col - 1, conn, checked);
+
+    return cellCount;
 }
 
 int Cellgrid::_countCells(int row, int col, int conn, bool *checked) {
-    if (grid[(col * row) + col] == 0) {
-        checked[(col * row) + col] = true;
+    if (grid[(this->cols * row) + col] == 0) {
+        checked[(this->cols * row) + col] = true;
         return 0;
     }
-    else if (checked[(col * row) + col] = false) {
-        checked[(col * row) + col] = true;
+    else if (checked[(this->cols * row) + col] == false) {
+        checked[(this->cols * row) + col] = true;
 
         int number = 1 + _countCells(row, col + 1, conn, checked) 
             + _countCells(row, col - 1, conn, checked) 
@@ -99,7 +101,20 @@ int Cellgrid::countBlobs(int conn) {
     // this will prevent compiler error but should be changed
     // to return the blob count which you have found using
     // your helper function
-    return 0;
+    bool *checked = new bool[this->rows * this->cols] {false};
+    int *blobCount = new int;
+    *blobCount = 0;
+    return _countBlobs(0, 0, conn, checked, blobCount);
+}
+
+int Cellgrid::_countBlobs(int row, int col, int conn, bool *checked, int *blobCount) {
+    if (this->grid[(this->cols * row) + col] == 0) {
+        checked[(this->cols * row) + col] = true;
+        return 0;
+    }
+    else if (checked[(this->cols * row) + col] == true) {
+        return 0;
+    }
 }
 
 // this function prints your cellgrid in 2D format without trailing
