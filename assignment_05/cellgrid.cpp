@@ -52,13 +52,14 @@ int Cellgrid::countCells(int row, int col, int conn) {
 
     // this is where your private helper method which does the
     // backtracking should be called
-    
+
     // this will prevent a compiler error but should be changed
     // to return the cell count you have found
     bool *checked = new bool[this->rows * this->cols] {false};
     int cellCount = _countCells(row - 1, col - 1, conn, checked);
 
     return cellCount;
+    // WORKS
 }
 
 int Cellgrid::_countCells(int row, int col, int conn, bool *checked) {
@@ -69,20 +70,20 @@ int Cellgrid::_countCells(int row, int col, int conn, bool *checked) {
     else if (checked[(this->cols * row) + col] == false) {
         checked[(this->cols * row) + col] = true;
 
-        int number = 1 + _countCells(row, col + 1, conn, checked) 
-            + _countCells(row, col - 1, conn, checked) 
+        int number = 1 + _countCells(row, col + 1, conn, checked)
+            + _countCells(row, col - 1, conn, checked)
             + _countCells(row - 1, col, conn, checked)
             + _countCells(row + 1, col, conn, checked);
-        
+
         if (conn == 8) {
             number = number + _countCells(row + 1, col + 1, conn, checked)
                 + _countCells(row + 1, col - 1, conn, checked)
                 + _countCells(row - 1, col - 1, conn, checked)
                 + _countCells(row - 1, col + 1, conn, checked);
         }
-        
+
         return number;
-    }     
+    }
     else {
         return 0;
     }
@@ -102,18 +103,48 @@ int Cellgrid::countBlobs(int conn) {
     // to return the blob count which you have found using
     // your helper function
     bool *checked = new bool[this->rows * this->cols] {false};
-    int *blobCount = new int;
-    *blobCount = 0;
-    return _countBlobs(0, 0, conn, checked, blobCount);
+    return _countBlobs(0, 0, conn, checked);
+
+    // WORKS
 }
 
-int Cellgrid::_countBlobs(int row, int col, int conn, bool *checked, int *blobCount) {
-    if (this->grid[(this->cols * row) + col] == 0) {
-        checked[(this->cols * row) + col] = true;
-        return 0;
+int Cellgrid::_countBlobs(int row, int col, int conn, bool *checked) {
+    if ((this->grid[(this->cols * row) + col] == 0) || (checked[(this->cols * row) + col])) {
+        while (((this->grid[(this->cols * row) + col] == 0) || (checked[(this->cols * row) + col])) && (row < this->rows)) {
+            checked[(this->cols * row) + col] = true;
+            if (col == this->cols - 1) {
+                col = 0;
+                row++;
+            }
+            else {
+                col++;
+            }
+        }
+        if (row == this->rows) {
+            return 0;
+        }
+        else {
+            return 0 + _countBlobs(row, col, conn, checked);
+        }
     }
-    else if (checked[(this->cols * row) + col] == true) {
-        return 0;
+    else if ((this->grid[(this->cols * row) + col] == 1) && (!checked[(this->cols * row) + col])) {
+        int cellsInBlobs = _countCells(row, col, conn, checked);
+        while (((this->grid[(this->cols * row) + col] == 0) || (checked[(this->cols * row) + col])) && (row < this->rows)) {
+            checked[(this->cols * row) + col] = true;
+            if (col == this->cols - 1) {
+                col = 0;
+                row++;
+            }
+            else {
+                col++;
+            }
+        }
+        if (row == this->rows) {
+            return 1;
+        }
+        else {
+            return 1 + _countBlobs(row, col, conn, checked);
+        }
     }
 }
 
