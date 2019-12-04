@@ -44,15 +44,80 @@ Sudoku::~Sudoku() {
 // your implementation for problem 3. It takes no parameters and
 // should overwrite the 0s in puzzle to so that it represents a solved puzzle
 void Sudoku::solve() {
-    // TODO:
-    // implement solution to problem 3
+    bool *solved = new bool {false};
+    bool *found = new bool[81] {false};
+    int possBoard[81][11];
+    _initPossBoard(possBoard, found);
+    _fillPossBoard(possBoard, found);
+    _extrapolate(possBoard, found, 1);
+    *solved = _checkSolved(found);
+    if (*solved == false) {
+        _solve(0, possBoard, solved, found);
+    }
 
-    // This is where your private helper method which does the
-    // backtracking should be called
-    bool *solved;
-    *solved = false;
-    this->_solve(0, 0, this->puzzle, solved);
+    delete [] found;
+    delete solved;
+
     return;
+}
+
+void Sudoku::_initPossBoard(int possBoard[81][11], bool found[81]) {
+    for (int i = 0; i < 81; i++) {
+        possBoard[i][0] = this->puzzle[i];
+        possBoard[i][10] = 0;
+        for (int j = 1; j < 10; j++) {
+            possBoard[i][j] = 0;
+            if (this->puzzle[i] == j) {
+                possBoard[i][j] = 1;
+                possBoard[i][10] = -1;
+                found[i] = true;
+            }
+        }
+    }
+    return;
+}
+
+void Sudoku::_fillPossBoard(int possBoard[81][11], bool found[81]) {
+    for (int i = 0; i < 81; i++) {
+        if (!found[i]) {
+            for (int j = 1; j < 10; j++) {
+                int col = i % 9;
+                int row = (i - col) / 9;
+                if (_checkPlacement(j, row, col)) {
+                    possBoard[i][j] = 1;
+                    possBoard[i][10]++;
+                }
+            }
+        }
+    }
+}
+
+bool Sudoku::_checkPlacement(int place, int row, int col) {
+    for (int i = 0; i < 9; i++) {
+        if (place == puzzle[(row * 9) + i]) {
+            return false;
+        }
+        if (place == puzzle[(i * 9) + col]) {
+            return false;
+        }
+    }
+
+    int *top = new int {0};
+    int *bottom = new int {0};
+    int *left = new int {0};
+    int *right = new int {0};
+    _topBottomLeftRight(row, col, top, bottom, left, right);
+    for (int i = *top; i <= *bottom; i++) {
+        for (int j = *left; j <= *right; j++) {
+            if (!((i == row) && (j == col))) {
+                if (this->puzzle[(i * 9) + j] == place) {
+                    return false;
+                }
+            }
+        }
+    }
+
+    return true;
 }
 
 void Sudoku::_topBottomLeftRight(int row, int col, int *top, int *bottom, int *left, int *right) {
@@ -84,60 +149,100 @@ void Sudoku::_topBottomLeftRight(int row, int col, int *top, int *bottom, int *l
     return;
 }
 
-bool Sudoku::_checkPlacement(int place, int row, int col, int puzzle[81]) {
-    for (int i = 0; i < 9; i++) {
-        if (place == puzzle[(row * 9) + i]) {
-            return false;
+void Sudoku::_extrapolate(int possBoard[81][11], bool found[81], int count) {
+    if (count == 0) {
+        return;
+    }
+    else {
+        count = 0;
+        for (int i = 0; i < 81; i++) {
+            if (possBoard[i][10] == 1) {
+                int j = 1;
+                while (possBoard[i][j] != 1) {
+                    j++;
+                }
+                possBoard[i][0] = j;
+                possBoard[i][10] = -1;
+                this->puzzle[i] = j;
+                found[i] = true;
+                count++;
+                _updatePulse(possBoard, i, j);
+            }
         }
-        if (place == puzzle[(i * 9) + col]) {
-            return false;
+        return _extrapolate(possBoard, found, count);
+    }
+}
+
+void Sudoku::_updatePulse(int possBoard[81][11], int idx, int val) {
+    int col = idx % 9;
+    int row = (idx - col) / 9;
+
+    for (int i = 0; i < 9; i++) {
+        if (possBoard[(row * 9) + i][val] == 1) {
+            possBoard[(row * 9) + i][val] = 0;
+            possBoard[(row * 9) + i][10]--;
+        }
+        if (possBoard[(i * 9) + col][val] == 1) {
+            possBoard[(i * 9) + col][val] = 0;
+            possBoard[(i * 9) + col][10]--;
         }
     }
 
-    int *top; int *bottom; int *left; int *right;
+    int *top = new int {0};
+    int *bottom = new int {0};
+    int *left = new int {0};
+    int *right = new int {0};
     _topBottomLeftRight(row, col, top, bottom, left, right);
     for (int i = *top; i <= *bottom; i++) {
         for (int j = *left; j <= *right; j++) {
             if (!((i == row) && (j == col))) {
-                if (this->puzzle[(i * 9) + j] == place) {
-                    return false;
+                if (possBoard[(i * 9) + j][val] == 1) {
+                    possBoard[(i * 9) + j][val] = 0;
+                    possBoard[(i * 9) + j][10]--;
                 }
             }
         }
     }
+}
 
+bool Sudoku::_checkSolved(bool found[81]) {
+    int i = 0;
+    for (int i = 0; i < 81; i++) {
+        if (found[i] == false) {
+            return false;
+        }
+    }
     return true;
 }
 
-void Sudoku::_solve(int row, int col, int puzzle[81], bool *solved) {
-    cout << ((row * 9) + col) << endl;
-    if (((row * 9) + col) == 81) {
+void Sudoku::_solve(int idx, int possBoard[81][11], bool *solved, bool found[81]) {
+    if (idx == 81) {
         *solved = true;
         return;
     }
+    else if (this->puzzle[idx] != 0) {
+        _solve(idx + 1, possBoard, solved, found);
+        return;
+    }
     else {
-        while (this->puzzle[(row * 9) + col] != 0) {
-            if ((col + 1) == 9) {
-                row++;
-                col = 0;
-            }
-            else {
-                col++;
-            }
-        }
-        int place = 1;
-        while (*solved == false) {
-            if (!_checkPlacement(place, row, col, puzzle)) {
-                place++;
-            }
-            this->puzzle[(row * 9) + col] = place;
-            if ((col + 1) == 9) {
-                _solve(row + 1, 0, puzzle, solved);
-            }
-            else {
-                _solve(row, col + 1, puzzle, solved);
+        for (int i = 1; i < 10; i++) {
+            int col = idx % 9;
+            int row = (idx - col) / 9;
+            if (possBoard[idx][i] == 1 && _checkPlacement(i, row, col)) {
+                int place = i;
+                this->puzzle[idx] = place;
+                found[idx] = true;
+
+                _solve(idx + 1, possBoard, solved, found);
+                if (*solved == true) {
+                    return;
+                }
+
+                this->puzzle[idx] = 0 ;
+                found[idx] = false;
             }
         }
+        return;
     }
 }
 
