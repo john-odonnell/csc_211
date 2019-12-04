@@ -23,9 +23,15 @@ class Sudoku {
         // puzzle will store the Sudoku puzzle in 1D space
         int puzzle[81];
 
-        void _solve(int row, int col, int puzzle[], bool *solved);
-        bool _checkPlacement(int place, int row, int col, int puzzle[]);
+        void _initPossBoard(int possBoard[81][11], bool found[81]);
+        void _fillPossBoard(int possBoard[81][11], bool found[81]);
+        bool _checkPlacement(int place, int row, int col);
         void _topBottomLeftRight(int row, int col, int *top, int *bottom, int *left, int *right);
+        void _extrapolate(int possBoard[81][11], bool found[81], int count);
+        void _updatePulse(int possBoard[81][11], int i, int j);
+        bool _checkSolved(bool found[81]);
+        void _solve(int idx, int possBoard[81][11], bool *solved, bool found[81]);
+
     public:
         /* Class constructors and destructors */
         // class constructor using a file
@@ -37,5 +43,7 @@ class Sudoku {
         void solve();
         // prints the Sudoku puzzle in 2D format
         void print();
+
+    // arrays: rows, columns and boxes
 };
 #endif
