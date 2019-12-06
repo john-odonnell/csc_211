@@ -1,0 +1,10 @@
+Question 1:
+-----------
+test.txt contains two copies of the contents of the file /etc/hosts
+one after the other.
+
+Question 2:
+-----------
+The contents were directed into the new file test.txt from the command
+line.
+

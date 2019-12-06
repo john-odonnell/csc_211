@@ -23,13 +23,21 @@ class Sudoku {
         // puzzle will store the Sudoku puzzle in 1D space
         int puzzle[81];
 
+        // initialize the board of possible values from the input puzzle
         void _initPossBoard(int possBoard[81][11], bool found[81]);
+        // fill all subarrays based on the input puzzle
         void _fillPossBoard(int possBoard[81][11], bool found[81]);
+        // checks the placement ofa a value at an idx
         bool _checkPlacement(int place, int row, int col);
+        // gets values respresenting the 3x3 box the idx is found in
         void _topBottomLeftRight(int row, int col, int *top, int *bottom, int *left, int *right);
+        // extrapolates form known data to most solved state without employing brute force
         void _extrapolate(int possBoard[81][11], bool found[81], int count);
+        // updates the row, column and box of possible values due to the placement of a value at an idx
         void _updatePulse(int possBoard[81][11], int i, int j);
+        // checks if the puzzle is solved
         bool _checkSolved(bool found[81]);
+        // brute force solve
         void _solve(int idx, int possBoard[81][11], bool *solved, bool found[81]);
 
     public:
