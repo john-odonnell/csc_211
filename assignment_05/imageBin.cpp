@@ -24,7 +24,7 @@ int main(int argc, char *argv[]) {
             rgb_t this_col;
             input.get_pixel(j, i, this_col);
 
-            if (((this_col.red + this_col.green + this_col.blue) / 3) > 127) {
+            if (((this_col.red + this_col.green + this_col.blue) / 3) > 128) {
                 input.set_pixel(j, i, 255, 255, 255);
             }
             else {
