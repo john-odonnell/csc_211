@@ -26,7 +26,7 @@ class Cellgrid {
         bool *grid;
 
         int _countCells(int row, int col, int conn, bool *checked);
-        int _countBlobs(int row, int col, int conn, bool *checked);
+        int _countBlobs(int idx, int conn, bool *checked);
     public:
         /* Class constructors and destructors */
         // class constructor using a file
