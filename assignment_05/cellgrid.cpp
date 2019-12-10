@@ -70,16 +70,37 @@ int Cellgrid::_countCells(int row, int col, int conn, bool *checked) {
     else if (checked[(this->cols * row) + col] == false) {
         checked[(this->cols * row) + col] = true;
 
-        int number = 1 + _countCells(row, col + 1, conn, checked)
-            + _countCells(row, col - 1, conn, checked)
-            + _countCells(row - 1, col, conn, checked)
-            + _countCells(row + 1, col, conn, checked);
+        int number = 1;
+        if (row > 0) {
+            number += _countCells(row - 1, col, conn, checked);
+        }
+        if (row < this->rows - 1) {
+            number += _countCells(row + 1, col, conn, checked);
+        }
+        if (col > 0) {
+            number += _countCells(row, col - 1, conn, checked);
+        }
+        if (col < this->cols - 1) {
+            number += _countCells(row, col + 1, conn, checked);
+        }
 
         if (conn == 8) {
-            number = number + _countCells(row + 1, col + 1, conn, checked)
-                + _countCells(row + 1, col - 1, conn, checked)
-                + _countCells(row - 1, col - 1, conn, checked)
-                + _countCells(row - 1, col + 1, conn, checked);
+            if (row > 0) {
+                if (col > 0) {
+                    number += _countCells(row - 1, col - 1, conn, checked);
+                }
+                if (col < this->cols - 1) {
+                    number += _countCells(row - 1, col + 1, conn, checked);
+                }
+            }
+            if (row < this->rows - 1) {
+                if (col > 0) {
+                    number += _countCells(row + 1, col - 1, conn, checked);
+                }
+                if (col < this->cols - 1) {
+                    number += _countCells(row + 1, col + 1, conn, checked);
+                }
+            }
         }
 
         return number;
@@ -103,48 +124,29 @@ int Cellgrid::countBlobs(int conn) {
     // to return the blob count which you have found using
     // your helper function
     bool *checked = new bool[this->rows * this->cols] {false};
-    return _countBlobs(0, 0, conn, checked);
+    return _countBlobs(0, conn, checked);
 
     // WORKS
 }
 
-int Cellgrid::_countBlobs(int row, int col, int conn, bool *checked) {
-    if ((this->grid[(this->cols * row) + col] == 0) || (checked[(this->cols * row) + col])) {
-        while (((this->grid[(this->cols * row) + col] == 0) || (checked[(this->cols * row) + col])) && (row < this->rows)) {
-            checked[(this->cols * row) + col] = true;
-            if (col == this->cols - 1) {
-                col = 0;
-                row++;
-            }
-            else {
-                col++;
-            }
-        }
-        if (row == this->rows) {
-            return 0;
+int Cellgrid::_countBlobs(int idx, int conn, bool *checked) {
+    if (idx >= (this->rows * this->cols)) {
+        return 0;
+    }
+    if (!checked[idx]) {
+        if (this->grid[idx] == 0) {
+            checked[idx] = true;
+            return 0 + _countBlobs(idx + 1, conn, checked);
         }
         else {
-            return 0 + _countBlobs(row, col, conn, checked);
+            int col = idx % 9;
+            int row = (idx - col) / 9;
+            int cellsInBlob = _countCells(row, col, conn, checked);
+            return 1 + _countBlobs(idx + 1, conn, checked);
         }
     }
-    else if ((this->grid[(this->cols * row) + col] == 1) && (!checked[(this->cols * row) + col])) {
-        int cellsInBlobs = _countCells(row, col, conn, checked);
-        while (((this->grid[(this->cols * row) + col] == 0) || (checked[(this->cols * row) + col])) && (row < this->rows)) {
-            checked[(this->cols * row) + col] = true;
-            if (col == this->cols - 1) {
-                col = 0;
-                row++;
-            }
-            else {
-                col++;
-            }
-        }
-        if (row == this->rows) {
-            return 1;
-        }
-        else {
-            return 1 + _countBlobs(row, col, conn, checked);
-        }
+    else {
+        return 0 + _countBlobs(idx + 1, conn, checked);
     }
 }
 
@@ -160,3 +162,5 @@ void Cellgrid::print() {
         std::cout << std::endl;
     }
 }
+
+// WORKS
