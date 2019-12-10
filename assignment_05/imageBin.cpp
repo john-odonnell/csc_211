@@ -34,8 +34,6 @@ int main(int argc, char *argv[]) {
 
     for (int i = 0; i < input.height(); i++) {
         for (int j = 0; j < input.width(); j++) {
-            std::cout << input.height() << " " << input.width() << std::endl;
-            std::cout << i << " " << j << std::endl;
             rgb_t this_pixel;
             input.get_pixel(j, i, this_pixel);
             if (((this_pixel.red + this_pixel.green + this_pixel.blue) / 3) < mean) {
