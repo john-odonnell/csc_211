@@ -8,6 +8,20 @@
 // so be sure to do that before uncommenting this #include line
 #include "bitmap_image.hpp"
 
+int get_mean(bitmap_image image) {
+    int sum = 0;
+    int pixel_count = 0;
+    rgb_t this_pixel;
+    for (int i = 0; i < image.height(); i++) {
+        for (int j = 0; j < image.width(); j++) {
+            image.get_pixel(i, j, this_pixel);
+            sum += ((this_pixel.red + this_pixel.green + this_pixel.blue) / 3);
+            pixel_count++;
+        }
+    }
+    return (sum / pixel_count);
+}
+
 int main(int argc, char *argv[]) {
     // get a string containing the image name
     // this is necessary because the bitmap_image
@@ -16,19 +30,19 @@ int main(int argc, char *argv[]) {
     bitmap_image input(file_name);
     input.convert_to_grayscale();
 
-    unsigned int height = input.height();
-    unsigned int width = input.width();
+    int mean = get_mean(input);
 
-    for (int i = 0; i < height; i++) {
-        for (int j = 0; j < width; j++) {
-            rgb_t this_col;
-            input.get_pixel(j, i, this_col);
-
-            if (((this_col.red + this_col.green + this_col.blue) / 3) > 128) {
-                input.set_pixel(j, i, 255, 255, 255);
+    for (int i = 0; i < input.height(); i++) {
+        for (int j = 0; j < input.width(); j++) {
+            std::cout << input.height() << " " << input.width() << std::endl;
+            std::cout << i << " " << j << std::endl;
+            rgb_t this_pixel;
+            input.get_pixel(j, i, this_pixel);
+            if (((this_pixel.red + this_pixel.green + this_pixel.blue) / 3) < mean) {
+                input.set_pixel(j, i, 0, 0, 0);
             }
             else {
-                input.set_pixel(j, i, 0, 0, 0);
+                input.set_pixel(j, i, 255, 255, 255);
             }
         }
     }
@@ -42,3 +56,5 @@ int main(int argc, char *argv[]) {
 
     return 0;
 }
+
+// WORKS?
